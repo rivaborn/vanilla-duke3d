@@ -1,0 +1,200 @@
+# Architecture Overview
+
+## Repository Shape
+
+- **SRC/**: Core engine and game modules
+  - **A.ASM** — x86-32 assembly rendering primitives (line drawing, masking, translucence, sprites, slopes)
+  - **K.ASM** — x86-32 assembly audio synthesis and PC timer interrupt handler
+  - **BUILD.H** — Master header defining sector/wall/sprite structs, compile-time limits, global state arrays
+  - **BUILD.C** — Interactive map editor (3D first-person + 2D overhead modes)
+  - **BSTUB.C** — Editor stub module (keyboard input, sprite setup, UI bridges)
+  - **ENGINE.C** — Portal-based 3D rendering, spatial engine, collision detection
+  - **CACHE1D.C** — Memory cache, group file I/O, LZW compression/decompression
+  - **KDMENG.C** — Multi-channel sound engine, sound card drivers, music/sample playback
+  - **MULTI.C** — Serial COM + IPX network multiplayer (up to 16 players)
+  - **MMULTI.C** — Packet buffering, CRC validation, timeout-based retransmission
+  - **PRAGMAS.H** — Inline x86 assembly for fixed-point math, VGA I/O, hardware helpers
+  - **VES2.H** — VESA VBE 2.0 framebuffer abstraction (linear/banked modes, palette)
+  - **NAMES.H** — Sprite/tile type constants
+  - **drawing_routines/A.C** — Wrapper functions for texture-mapped primitives
+
+- **UTIL/**: Batch utilities and tools
+  - **EDITART.C** — Interactive tile/artwork editor with palette management
+  - **SETUP.C** — TUI configuration utility for hardware and game settings
+  - **CONVMAP5.C, CONVMAP6.C, CONVMAP7.C** — Map format forward converters (v5→v6→v7)
+  - **BACKMAP5.C, BACKMAP6.C** — Map format backward converters (v6→v5, v7→v6)
+  - **WAD2ART.C** — Doom WAD to Build ART tile converter
+  - **WAD2MAP.C** — Doom WAD to Build map converter
+  - **KGROUP.C, KEXTRACT.C** — Group file archive creation and extraction
+  - **TRANSPAL.C** — Palette lookup and translucency table generator
+
+## Major Subsystems
+
+### Core Rendering Engine
+- **Purpose:** Portal-based 3D renderer with sector visibility, perspective-correct texture mapping, sprite rendering, and collision detection
+- **Key directories / files:**
+  - SRC/ENGINE.C, SRC/A.ASM, SRC/drawing_routines/A.C
+- **Key responsibilities:**
+  - Recursive sector scanning for portal visibility with occlusion tracking
+  - Wall/ceiling/floor drawing with per-pixel texture lookup and fixed-point perspective correction
+  - Sprite rendering (billboards, rotated, masked) with depth-based sorting
+  - Collision detection (hitscan ray casting, clipmove swept collision, getzrange z-bounds)
+  - Palette and graphics management; tile/voxel loading
+  - Self-modifying x86 code patches for runtime parameter binding (stride, palette offsets, coordinates)
+  - CPU detection and codec selection (Pentium/Pentium II/MMX variants)
+- **Key dependencies:**
+  - BUILD.H (sector[], wall[], sprite[] arrays; limits; global state)
+  - PRAGMAS.H (mulscale*, divscale*, asm1/asm2/asm3/asm4 globals, video I/O)
+  - VES2.H (framebuffer pointers, palette DAC)
+
+### Data Model & Editor
+- **Purpose:** Define engine data structures and provide interactive level editor with map file I/O
+- **Key directories / files:**
+  - SRC/BUILD.H, SRC/BUILD.C, SRC/BSTUB.C
+- **Key responsibilities:**
+  - Define MAXSECTORS, MAXWALLS, MAXSPRITES, MAXTILES engine limits
+  - Declare global parallel arrays (no encapsulation): sector[], wall[], sprite[], palette[], sintable[], waloff[], etc.
+  - 3D editor mode: in-world camera control, sprite/sector/wall editing with visual feedback
+  - 2D editor mode: overhead map view with wall/sector manipulation, grid snapping, sector highlighting
+  - Keyboard/mouse input with interrupt-driven buffering
+  - Load/save map files in version-specific binary formats
+  - Property dialogs and UI editing callbacks for geometry and sprites
+  - Tile/texture browser with search and zoom
+  - Geometry operations: sector splitting/joining, wall insertion/deletion, point snapping
+- **Key dependencies:**
+  - ENGINE.C (drawrooms, drawmasks, collision queries, sprite operations)
+  - CACHE1D.C (loadboard, saveboard)
+  - NAMES.H (sprite type constants)
+
+### Resource Management
+- **Purpose:** Centralized memory cache with LRU eviction, group file archiving, and asset decompression
+- **Key directories / files:**
+  - SRC/CACHE1D.C
+- **Key responsibilities:**
+  - Pre-allocated circular memory buffer with locking semantics and age-based eviction
+  - Load files from raw disk or .GRP archive containers with directory metadata
+  - LZW compress/decompress for asset streaming and storage
+  - Tile graphics pointer management (waloff[] locks and unlocks)
+  - Age decrement cycle for cache recycling on periodic calls
+- **Key dependencies:**
+  - DOS file I/O (open, read, close, lseek, filelength)
+  - PRAGMAS.H (memory operations: copybufbyte, clearbuf, FP_OFF)
+
+### Audio Subsystem
+- **Purpose:** Multi-channel digital audio synthesis, PCM playback, and sound card hardware control
+- **Key directories / files:**
+  - SRC/K.ASM, SRC/KDMENG.C
+- **Key responsibilities:**
+  - Sound card detection and initialization (Sound Blaster, Pro Audio Spectrum, PC speaker)
+  - Comb filter synthesis (four variants: mono/stereo × low/high quality) via K.ASM
+  - Real-time audio mixing at ~120 Hz update rate
+  - 16-channel sound effect mixing with vibrato, tremolo, panning effects
+  - Spatial audio (distance-based attenuation, listener-relative panning)
+  - .KWV sample file loading and .KDM music sequencing
+  - DMA buffer management and double-buffering with ISA hardware
+  - PC timer interrupt handler (INT 0x08) for sample-accurate playback
+  - Sample format conversion and saturation (8-bit, 16-bit bounds)
+- **Key dependencies:**
+  - PRAGMAS.H (fixed-point math, port I/O intrinsics)
+  - DOS interrupts (0x08 timer, 0x21 generic, sound card ISA ports)
+
+### Multiplayer & Networking
+- **Purpose:** Support up to 16-player serial COM and IPX network modes with reliable packet delivery
+- **Key directories / files:**
+  - SRC/MULTI.C, SRC/MMULTI.C
+- **Key responsibilities:**
+  - Initialize/deinitialize COM ports or IPX network via DOS interrupts (0x7a IPX, 0x2f driver check, 0x31 DPMI)
+  - Install and restore interrupt handlers for serial input and IPX callbacks
+  - Send/receive packets with CRC-16 validation (error detection)
+  - Timeout-based packet retransmission for reliable delivery
+  - Player connectivity graph management (adjacency, linked lists)
+  - Real-mode code segment injection for COM/IPX interrupt handlers
+  - Packet buffering and deduplication per player
+  - Embedded asm real-mode buffers (rmbuffer, rmnetbuffer) for ISR callbacks
+- **Key dependencies:**
+  - DOS interrupts (0x7a, 0x31, 0x21, 0x2f, serial UART 3F8/2F8/3E8/2E8)
+  - PRAGMAS.H (port I/O, memory operations)
+
+### Graphics & Video Output
+- **Purpose:** Framebuffer abstraction, video mode selection, palette management via VESA VBE 2.0
+- **Key directories / files:**
+  - SRC/VES2.H, SRC/PRAGMAS.H
+- **Key responsibilities:**
+  - VESA VBE 2.0 mode enumeration, validation, and sorting by resolution
+  - Linear framebuffer (LFB) or banked video mode detection and switching
+  - Physical-to-linear address mapping via DPMI for LFB access
+  - Page flipping and dirty-region tracking for banked modes
+  - DAC (palette) read/write operations
+  - Fixed-point arithmetic (multiply-scale, divide-scale, double-multiply-accumulate)
+  - VGA mode 13h and mode X pixel/line drawing with alignment optimization
+  - Memory buffer operations (copy, fill, clear, reverse)
+  - Mouse, keyboard, 8253 PIT timer hardware interface
+- **Key dependencies:**
+  - DOS DPMI (0x10 video mode setup, 0x31 memory mapping)
+  - x86 hardware (VGA I/O 0x3c4–0x3cf, video RAM 0xa0000, 8253 timer, PS/2 mouse INT 0x33)
+
+### Sprite & Tile Type Registry
+- **Purpose:** Define numeric identifiers for game entities and provide human-readable names
+- **Key directories / files:**
+  - SRC/NAMES.H
+- **Key responsibilities:**
+  - Central sprite type constants (PLAYER, BROWNMONSTER, etc.)
+  - Tile/sprite ID mapping for editor introspection
+- **Key dependencies:**
+  - None (passive header; included by editor and game code)
+
+### Map Format Converters
+- **Purpose:** Migrate map files between engine versions (v5 ↔ v6 ↔ v7)
+- **Key directories / files:**
+  - UTIL/CONVMAP5.C (v5→v6), UTIL/CONVMAP6.C (v6→v7), UTIL/CONVMAP7.C (forward pipeline)
+  - UTIL/BACKMAP5.C (v6→v5), UTIL/BACKMAP6.C (v7→v6)
+- **Key responsibilities:**
+  - Load and validate old-format binary map structures
+  - Transform struct layouts and field migrations (height left-shift, wall pointer consolidation, cstat conversions)
+  - Derive missing fields in new format from old data
+  - Write new-format binary map files
+  - Batch file discovery and alphabetic sorting via DOS file search
+- **Key dependencies:**
+  - DOS file I/O (open, read, write, close)
+
+### Tile & Artwork Editor
+- **Purpose:** Interactive editor for tile graphics, palettes, and artwork
+- **Key directories / files:**
+  - UTIL/EDITART.C
+- **Key responsibilities:**
+  - Load/save .ART tile files and metadata
+  - Tile browser with zoom, swap, and batch operations
+  - Pixel-level drawing (brush, fill, rotate, flip)
+  - Palette and lookup table management
+  - Image import (BMP, PCX, GIF) with format conversion
+  - Shade table and translucency table generation
+  - Screenshot capture to PCX
+  - VGA graphics mode control (sequencer, CRTC, attribute, graphics controller, DAC)
+- **Key dependencies:**
+  - VGA hardware (0x3c4–0x3cf ports, 0xa0000 video RAM)
+  - DOS file I/O and directory scanning
+
+### Configuration Utility
+- **Purpose:** Interactive TUI for persistent hardware and game settings
+- **Key directories / files:**
+  - UTIL/SETUP.C
+- **Key responsibilities:**
+  - Hierarchical menu system for graphics, sound, input, networking, keybindings
+  - Graphics mode selection (Chain4, VESA, chipset-specific)
+  - Sound card and music device configuration
+  - Input device setup (keyboard, mouse, joystick)
+  - Serial communications parameters
+  - Custom keybinding capture via keyboard interrupt handler
+  - VGA screen state save/restore during menu transitions
+  - Load/save binary `setup.dat` configuration file
+- **Key dependencies:**
+  - DOS BIOS (0x10 video, 0x09 keyboard interrupt)
+  - VGA text buffer (0xb8000) for direct rendering
+  - DOS file I/O
+
+### Group File Archiving
+- **Purpose:** Create and extract uncompressed asset archives with wildcard file selection
+- **Key directories / files:**
+  - UTIL/KGROUP.C (creation), UTIL/KEXTRACT.C (extraction)
+- **Key responsibilities:**
+  - Expand DOS wildcards (* and ?) and response file lists (@filename)

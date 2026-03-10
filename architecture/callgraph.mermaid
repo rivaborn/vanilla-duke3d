@@ -1,0 +1,148 @@
+%%{ init: { 'theme': 'dark', 'flowchart': { 'curve': 'basis' } } }%%
+graph LR
+
+  subgraph SRC
+    ExtPreCheckKeys_["ExtPreCheckKeys"]
+    VBE_getPalette_["VBE_getPalette"]
+    agecache_["agecache"]
+    allocache_["allocache"]
+    callcommit_["callcommit"]
+    dfwrite_["dfwrite"]
+    getcrc_["getcrc"]
+    getpacket_["getpacket"]
+    gettile_["gettile"]
+    getvalidvesamodes_["getvalidvesamodes"]
+    initgroupfile_["initgroupfile"]
+    kclose_["kclose"]
+    kdfread__dfread_["kdfread, dfread"]
+    kfilelength_["kfilelength"]
+    klseek_["klseek"]
+    kopen4load_["kopen4load"]
+    kread_["kread"]
+    limitrate_["limitrate"]
+    loadsong_["loadsong"]
+    main_["main"]
+    monohicomb__["monohicomb_"]
+    mvlineasm4__["mvlineasm4_"]
+    neton_["neton"]
+    pcbound2char__["pcbound2char_"]
+    pctimerhandler__["pctimerhandler_"]
+    sendpacket_["sendpacket"]
+    stereohicomb__["stereohicomb_"]
+    suckcache_["suckcache"]
+    uncompress_["uncompress"]
+    uninitgroupfile_["uninitgroupfile"]
+    uninitsb_["uninitsb"]
+    wsay_["wsay"]
+    wsayfollow_["wsayfollow"]
+  end
+
+  subgraph UTIL
+    captureit_["captureit"]
+    findfiles_["findfiles"]
+    getclosestcol_["getclosestcol"]
+    getpalookup_["getpalookup"]
+    gettile_["gettile"]
+    gettrans_["gettrans"]
+    initfastcolorlookup_["initfastcolorlookup"]
+    loadbmp___loadpcx___loadgif_["loadbmp / loadpcx / loadgif"]
+    loadpics_["loadpics"]
+    loadwall___savewall_["loadwall / savewall"]
+    main_["main"]
+    resizetile_["resizetile"]
+    savepics_["savepics"]
+    sectorofwall_["sectorofwall"]
+    selectbox_["selectbox"]
+    showall_["showall"]
+    showart_["showart"]
+    swapwalls_["swapwalls"]
+    updatemaps_["updatemaps"]
+  end
+
+  VBE_getPalette_ --> setvmode_
+  allocache_ --> copybufbyte_
+  captureit_ --> close_
+  captureit_ --> lseek_
+  captureit_ --> open_
+  captureit_ --> outp_
+  captureit_ --> read_
+  captureit_ --> write_
+  dfwrite_ --> allocache_
+  dfwrite_ --> copybufbyte_
+  getpalookup_ --> getclosestcol_
+  gettile_ --> close_
+  gettile_ --> drawxorbox_
+  gettile_ --> getch_
+  gettile_ --> kbhit_
+  gettile_ --> limitrate_
+  gettile_ --> open_
+  gettile_ --> read_
+  gettile_ --> resizetile_
+  gettile_ --> savepics_
+  gettile_ --> setvmode_
+  gettile_ --> swapwalls_
+  gettrans_ --> getclosestcol_
+  initgroupfile_ --> close_
+  initgroupfile_ --> open_
+  initgroupfile_ --> printf_
+  initgroupfile_ --> read_
+  kclose_ --> close_
+  kdfread__dfread_ --> allocache_
+  kdfread__dfread_ --> copybufbyte_
+  kdfread__dfread_ --> kread_
+  kdfread__dfread_ --> uncompress_
+  klseek_ --> lseek_
+  kopen4load_ --> open_
+  kread_ --> lseek_
+  kread_ --> read_
+  loadbmp___loadpcx___loadgif_ --> close_
+  loadbmp___loadpcx___loadgif_ --> open_
+  loadbmp___loadpcx___loadgif_ --> outp_
+  loadbmp___loadpcx___loadgif_ --> read_
+  loadpics_ --> close_
+  loadpics_ --> open_
+  loadpics_ --> read_
+  loadsong_ --> uninitsb_
+  loadwall___savewall_ --> clearbuf_
+  loadwall___savewall_ --> resizetile_
+  main_ --> clearbuf_
+  main_ --> close_
+  main_ --> getch_
+  main_ --> getpalookup_
+  main_ --> gettrans_
+  main_ --> initfastcolorlookup_
+  main_ --> kbhit_
+  main_ --> loadpics_
+  main_ --> open_
+  main_ --> read_
+  main_ --> readmouse_
+  main_ --> savepics_
+  main_ --> setvmode_
+  main_ --> updatemaps_
+  main_ --> write_
+  monohicomb__ --> _qualookup_
+  savepics_ --> close_
+  savepics_ --> open_
+  savepics_ --> write_
+  selectbox_ --> drawxorbox_
+  selectbox_ --> getch_
+  selectbox_ --> getpalookup_
+  selectbox_ --> kbhit_
+  selectbox_ --> limitrate_
+  selectbox_ --> outp_
+  selectbox_ --> printext256_
+  selectbox_ --> readmouse_
+  showall_ --> printext256_
+  stereohicomb__ --> _qualookup_
+  suckcache_ --> copybuf_
+  swapwalls_ --> outp_
+  swapwalls_ --> resizetile_
+  uncompress_ --> copybuf_
+  uninitgroupfile_ --> close_
+  updatemaps_ --> close_
+  updatemaps_ --> getch_
+  updatemaps_ --> lseek_
+  updatemaps_ --> open_
+  updatemaps_ --> printf_
+  updatemaps_ --> read_
+  updatemaps_ --> write_

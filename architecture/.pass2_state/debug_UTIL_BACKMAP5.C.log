@@ -1,0 +1,10 @@
+[Mon Mar  2 20:23:02 EST 2026] START: UTIL/BACKMAP5.C
+[Mon Mar  2 20:23:02 EST 2026] fence=c src=/mnt/c/Coding/3DRealms/vanilla-duke3d/UTIL/BACKMAP5.C
+[Mon Mar  2 20:23:02 EST 2026] pass1 loaded: 7841 bytes
+[Mon Mar  2 20:23:02 EST 2026] src_lines=384
+[Mon Mar  2 20:23:02 EST 2026] context sizes: arch=10623B xref=13086B
+[Mon Mar  2 20:23:02 EST 2026] payload built: 41788 chars
+[Mon Mar  2 20:23:02 EST 2026] calling claude -p --model haiku ...
+[Mon Mar  2 20:23:02 EST 2026] attempt 1: sending to claude...
+[Mon Mar  2 20:23:16 EST 2026] claude returned: exit=0 resp_size=28
+[Mon Mar  2 20:23:16 EST 2026] success

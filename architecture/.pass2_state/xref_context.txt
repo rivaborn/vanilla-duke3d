@@ -1,0 +1,300 @@
+# Cross-Reference Index
+
+Auto-generated from per-file architecture docs.
+
+## Function Definition Map
+
+| Function | Defined In |
+|----------|-----------|
+| `Assembly helpers: printchrasm(), savescreen(), restorescreen()` | `UTIL/SETUP.C` |
+| `AutoAlignWalls / AlignWalls / GetWallZPeg` | `SRC/BUILD.C` |
+| `DPMI_int86` | `SRC/VES2.H` |
+| `DPMI_int86x` | `SRC/VES2.H` |
+| `ExtAnalyzeSprites` | `SRC/BSTUB.C` |
+| `ExtCheckKeys` | `SRC/BSTUB.C` |
+| `ExtEditSectorData, ExtEditWallData, ExtEditSpriteData` | `SRC/BSTUB.C` |
+| `ExtGetSectorCaption, ExtGetWallCaption, ExtGetSpriteCaption` | `SRC/BSTUB.C` |
+| `ExtInit` | `SRC/BSTUB.C` |
+| `ExtPreCheckKeys` | `SRC/BSTUB.C` |
+| `ExtShowSectorData, ExtShowWallData, ExtShowSpriteData` | `SRC/BSTUB.C` |
+| `ExtUnInit` | `SRC/BSTUB.C` |
+| `GetPtrToLFB` | `SRC/VES2.H` |
+| `Sprite/Wall/Sector field accessors` | `UTIL/WAD2MAP.C` |
+| `VBE_callESDI` | `SRC/VES2.H` |
+| `VBE_getModeInfo` | `SRC/VES2.H` |
+| `VBE_getPalette` | `SRC/VES2.H` |
+| `VBE_setPalette` | `SRC/VES2.H` |
+| `agecache` | `SRC/CACHE1D.C` |
+| `allocache` | `SRC/CACHE1D.C` |
+| `bound2char_` | `SRC/K.ASM` |
+| `bound2short_` | `SRC/K.ASM` |
+| `boundmulscale` | `SRC/PRAGMAS.H` |
+| `callcommit` | `SRC/MMULTI.C` |
+| `captureit` | `UTIL/EDITART.C` |
+| `ceilscan` | `SRC/ENGINE.C` |
+| `checksectorpointer` | `SRC/BUILD.C` |
+| `clearbuf / clearbufbyte, copybuf / copybufbyte` | `SRC/PRAGMAS.H` |
+| `clipmove` | `SRC/ENGINE.C` |
+| `clockdir` | `SRC/BUILD.C` |
+| `comhandler` | `SRC/MULTI.C` |
+| `comon` | `SRC/MULTI.C` |
+| `compress` | `SRC/CACHE1D.C` |
+| `convalloc32` | `SRC/MULTI.C` |
+| `convmap` | `UTIL/BACKMAP5.C` |
+| `convmap` | `UTIL/BACKMAP6.C` |
+| `convmap` | `UTIL/CONVMAP6.C` |
+| `convmap` | `UTIL/CONVMAP7.C` |
+| `convpalette` | `UTIL/WAD2ART.C` |
+| `copysector` | `SRC/BUILD.C` |
+| `copywalltoscreen` | `UTIL/EDITART.C` |
+| `definekeys()` | `UTIL/SETUP.C` |
+| `dfwrite` | `SRC/CACHE1D.C` |
+| `divscaleN (N=1–32)` | `SRC/PRAGMAS.H` |
+| `dmulscaleN (N=1–32)` | `SRC/PRAGMAS.H` |
+| `dorotatesprite` | `SRC/ENGINE.C` |
+| `dosendpackets` | `SRC/MMULTI.C` |
+| `drawalls` | `SRC/ENGINE.C` |
+| `drawpixel / drawpixels / drawpixelses` | `SRC/PRAGMAS.H` |
+| `drawrooms` | `SRC/ENGINE.C` |
+| `drawscreen()` | `UTIL/SETUP.C` |
+| `drawsprite` | `SRC/ENGINE.C` |
+| `drawtilescreen` | `SRC/BUILD.C` |
+| `editinput` | `SRC/BUILD.C` |
+| `fillregion` | `UTIL/EDITART.C` |
+| `findfiles` | `UTIL/KEXTRACT.C` |
+| `findfiles` | `UTIL/KGROUP.C` |
+| `fixrepeats` | `SRC/BUILD.C` |
+| `florscan` | `SRC/ENGINE.C` |
+| `getclosestcol` | `UTIL/TRANSPAL.C` |
+| `getcrc` | `SRC/MMULTI.C` |
+| `getfilenames` | `UTIL/BACKMAP5.C` |
+| `getfilenames` | `UTIL/BACKMAP6.C` |
+| `getfilenames` | `UTIL/CONVMAP6.C` |
+| `getfilenames` | `UTIL/CONVMAP7.C` |
+| `getnumber16 / getnumber256` | `SRC/BUILD.C` |
+| `getpacket` | `SRC/MMULTI.C` |
+| `getpacket` | `SRC/MULTI.C` |
+| `getpalookup` | `UTIL/TRANSPAL.C` |
+| `getscancode(unsigned char scancode)` | `UTIL/SETUP.C` |
+| `getsndbufinfo` | `SRC/KDMENG.C` |
+| `gettile` | `SRC/BUILD.C` |
+| `gettile` | `UTIL/EDITART.C` |
+| `gettrans` | `UTIL/TRANSPAL.C` |
+| `getvalidvesamodes` | `SRC/VES2.H` |
+| `getwadindex` | `UTIL/WAD2MAP.C` |
+| `getzrange` | `SRC/ENGINE.C` |
+| `hitsan / neartag / inside / updatesector` | `SRC/ENGINE.C` |
+| `hitscan` | `SRC/ENGINE.C` |
+| `hlineasm4` | `SRC/drawing_routines/A.C` |
+| `hlineasm4_` | `SRC/A.ASM` |
+| `initcache` | `SRC/CACHE1D.C` |
+| `initcrc` | `SRC/MMULTI.C` |
+| `initcrc` | `SRC/MULTI.C` |
+| `initengine` | `SRC/ENGINE.C` |
+| `initfastcolorlookup` | `UTIL/TRANSPAL.C` |
+| `initgroupfile` | `SRC/CACHE1D.C` |
+| `initksqrt` | `UTIL/WAD2MAP.C` |
+| `initmultiplayers` | `SRC/MMULTI.C` |
+| `initmultiplayers` | `SRC/MULTI.C` |
+| `initsb` | `SRC/KDMENG.C` |
+| `inittimer1mhz / gettime1mhz / deltatime1mhz` | `SRC/PRAGMAS.H` |
+| `insertpoint / deletepoint / movewalls` | `SRC/BUILD.C` |
+| `inside` | `UTIL/WAD2MAP.C` |
+| `installbicomhandlers` | `SRC/MULTI.C` |
+| `kclose` | `SRC/CACHE1D.C` |
+| `kdfread, dfread` | `SRC/CACHE1D.C` |
+| `keyhandler` | `SRC/BUILD.C` |
+| `keyhandler() (interrupt handler)` | `UTIL/SETUP.C` |
+| `keytimerstuff` | `SRC/BUILD.C` |
+| `kfilelength` | `SRC/CACHE1D.C` |
+| `klseek` | `SRC/CACHE1D.C` |
+| `kopen4load` | `SRC/CACHE1D.C` |
+| `kread` | `SRC/CACHE1D.C` |
+| `limitrate` | `SRC/PRAGMAS.H` |
+| `loadbmp / loadpcx / loadgif` | `UTIL/EDITART.C` |
+| `loadoldboard` | `UTIL/BACKMAP5.C` |
+| `loadoldboard` | `UTIL/BACKMAP6.C` |
+| `loadoldboard` | `UTIL/CONVMAP6.C` |
+| `loadoldboard` | `UTIL/CONVMAP7.C` |
+| `loadpics` | `UTIL/EDITART.C` |
+| `loadsetup()` | `UTIL/SETUP.C` |
+| `loadsong` | `SRC/KDMENG.C` |
+| `loadtile` | `SRC/ENGINE.C` |
+| `loadwadheader` | `UTIL/WAD2ART.C` |
+| `loadwall / savewall` | `UTIL/EDITART.C` |
+| `loadwaves` | `SRC/KDMENG.C` |
+| `main` | `SRC/BUILD.C` |
+| `main` | `UTIL/BACKMAP5.C` |
+| `main` | `UTIL/BACKMAP6.C` |
+| `main` | `UTIL/CONVMAP6.C` |
+| `main` | `UTIL/CONVMAP7.C` |
+| `main` | `UTIL/EDITART.C` |
+| `main` | `UTIL/KEXTRACT.C` |
+| `main` | `UTIL/KGROUP.C` |
+| `main` | `UTIL/TRANSPAL.C` |
+| `main` | `UTIL/WAD2ART.C` |
+| `main` | `UTIL/WAD2MAP.C` |
+| `main()` | `UTIL/SETUP.C` |
+| `menu(unsigned char title, int menunum, int selection)` | `UTIL/SETUP.C` |
+| `menuselect` | `SRC/BUILD.C` |
+| `mhline / thline` | `SRC/drawing_routines/A.C` |
+| `mmxoverlay_` | `SRC/A.ASM` |
+| `monohicomb_` | `SRC/K.ASM` |
+| `monolocomb_` | `SRC/K.ASM` |
+| `mulscale / mulscaleN (N=1–32)` | `SRC/PRAGMAS.H` |
+| `musicon / musicoff` | `SRC/KDMENG.C` |
+| `mvlineasm1_, tvlineasm1_` | `SRC/A.ASM` |
+| `mvlineasm4_` | `SRC/A.ASM` |
+| `netinitconnection` | `SRC/MULTI.C` |
+| `neton` | `SRC/MULTI.C` |
+| `overheadeditor` | `SRC/BUILD.C` |
+| `overheadeditor / Sector Splitting (local logic)` | `SRC/BUILD.C` |
+| `parsescript` | `UTIL/WAD2MAP.C` |
+| `pcbound2char_` | `SRC/K.ASM` |
+| `pctimerhandler_` | `SRC/K.ASM` |
+| `preparesndbuf` | `SRC/KDMENG.C` |
+| `prepwall` | `SRC/ENGINE.C` |
+| `printchr(int x, int y, unsigned char character, unsigned char attribute, int len)` | `UTIL/SETUP.C` |
+| `printstr(int x, int y, unsigned char string[81], unsigned char attribute)` | `UTIL/SETUP.C` |
+| `processreservedmessage` | `SRC/MULTI.C` |
+| `prohlineasm4_` | `SRC/A.ASM` |
+| `provlineasm4_` | `SRC/A.ASM` |
+| `qinterpolatedown16 / qinterpolatedown16short` | `SRC/PRAGMAS.H` |
+| `readline, readbyte` | `UTIL/WAD2MAP.C` |
+| `resizetile` | `UTIL/EDITART.C` |
+| `rotatesprite` | `SRC/ENGINE.C` |
+| `saveart` | `UTIL/WAD2ART.C` |
+| `savenames` | `UTIL/WAD2ART.C` |
+| `savenewboard` | `UTIL/BACKMAP5.C` |
+| `savenewboard` | `UTIL/BACKMAP6.C` |
+| `savenewboard` | `UTIL/CONVMAP6.C` |
+| `savenewboard` | `UTIL/CONVMAP7.C` |
+| `savepics` | `UTIL/EDITART.C` |
+| `savesetup()` | `UTIL/SETUP.C` |
+| `sbhandler (interrupt handler)` | `SRC/KDMENG.C` |
+| `scansector` | `SRC/ENGINE.C` |
+| `sectorofwall` | `UTIL/CONVMAP6.C` |
+| `selectbox` | `UTIL/EDITART.C` |
+| `sendlogoff` | `SRC/MMULTI.C` |
+| `sendpacket` | `SRC/MMULTI.C` |
+| `sendpacket` | `SRC/MULTI.C` |
+| `setactivepage` | `SRC/VES2.H` |
+| `setdacbits` | `SRC/VES2.H` |
+| `setears` | `SRC/KDMENG.C` |
+| `sethlinesizes_` | `SRC/A.ASM` |
+| `setpackettimeout` | `SRC/MMULTI.C` |
+| `setuppctimerhandler_` | `SRC/K.ASM` |
+| `setupvlineasm_` | `SRC/A.ASM` |
+| `setvesa` | `SRC/VES2.H` |
+| `setvisualpage` | `SRC/VES2.H` |
+| `showall` | `UTIL/EDITART.C` |
+| `showart` | `UTIL/WAD2ART.C` |
+| `simulateint` | `SRC/MULTI.C` |
+| `slopevlin` | `SRC/drawing_routines/A.C` |
+| `slopevlin_` | `SRC/A.ASM` |
+| `sortfilenames` | `UTIL/BACKMAP5.C` |
+| `sortfilenames` | `UTIL/BACKMAP6.C` |
+| `sortfilenames` | `UTIL/CONVMAP6.C` |
+| `sortfilenames` | `UTIL/CONVMAP7.C` |
+| `spritevline / mspritevline / tspritevline` | `SRC/drawing_routines/A.C` |
+| `spritevline_` | `SRC/A.ASM` |
+| `sqr` | `SRC/PRAGMAS.H` |
+| `startwave` | `SRC/KDMENG.C` |
+| `stereohicomb_` | `SRC/K.ASM` |
+| `stereolocomb_` | `SRC/K.ASM` |
+| `suckcache` | `SRC/CACHE1D.C` |
+| `swapwalls` | `UTIL/EDITART.C` |
+| `timerhandler` | `SRC/BUILD.C` |
+| `tmulscaleN (N=1–32)` | `SRC/PRAGMAS.H` |
+| `uncompress` | `SRC/CACHE1D.C` |
+| `uninitgroupfile` | `SRC/CACHE1D.C` |
+| `uninitmultiplayers, sendlogon, getoutputcirclesize, setsocket, flushpackets, genericmultifunction` | `SRC/MMULTI.C` |
+| `uninitsb` | `SRC/KDMENG.C` |
+| `uninitvesa` | `SRC/VES2.H` |
+| `updatemaps` | `UTIL/EDITART.C` |
+| `vlineasm1 / mvlineasm1 / tvlineasm1` | `SRC/drawing_routines/A.C` |
+| `vlineasm1_` | `SRC/A.ASM` |
+| `vlineasm4_` | `SRC/A.ASM` |
+| `wallscan` | `SRC/ENGINE.C` |
+| `whitelinescan` | `SRC/BUILD.C` |
+| `wsay` | `SRC/KDMENG.C` |
+| `wsayfollow` | `SRC/KDMENG.C` |
+
+## Call Graph — Most Connected Functions
+
+Functions sorted by number of outgoing calls.
+
+| Caller | File | Callees (count) |
+|--------|------|-----------------|
+| `gettile` | `UTIL/EDITART.C` | 14: close drawtilescreen drawxorbox getch kbhit limitrate open read reportmaps resizetile savepics setvmode swapwalls updatescript |
+| `main` | `UTIL/TRANSPAL.C` | 13: clearbuf close drawpixel getch getpalookup gettrans initfastcolorlookup koutp koutpw open read setvmode write |
+| `main` | `UTIL/EDITART.C` | 13: drawmainscreen getch kbhit loadpics loadtables loadwall readmouse savenames savepics savewall setupmouse setvmode updatemaps |
+| `selectbox` | `UTIL/EDITART.C` | 11: drawxorbox getch getpaletteconversion getpalookup kbhit limitrate outp printext256 readmouse updatepalette updatepanningforumode |
+| `updatemaps` | `UTIL/EDITART.C` | 9: _dos_findfirst _dos_findnext close getch lseek open printf read write |
+| `captureit` | `UTIL/EDITART.C` | 9: close eof getpixel lseek open outp read sprintf write |
+| `kdfread, dfread` | `SRC/CACHE1D.C` | 6: allocache copybufbyte fread kread min uncompress |
+| `initgroupfile` | `SRC/CACHE1D.C` | 6: close exit kmalloc open printf read |
+| `VBE_getPalette` | `SRC/VES2.H` | 6: backupsegs restoresegs setvmode vesasetactive vesasetpalette vesasetvisual |
+| `showall` | `UTIL/EDITART.C` | 4: cleartext cleartopbox copywalltoscreen printext256 |
+| `savepics` | `UTIL/EDITART.C` | 4: close open printmessage write |
+| `loadbmp / loadpcx / loadgif` | `UTIL/EDITART.C` | 4: close open outp read |
+| `dfwrite` | `SRC/CACHE1D.C` | 4: allocache compress copybufbyte fwrite |
+| `pctimerhandler_` | `SRC/K.ASM` | 3: __GETDS _chain_intr_ preparesndbuf_ |
+| `loadwall / savewall` | `UTIL/EDITART.C` | 3: clearbuf resizetile updatepanning |
+| `loadpics` | `UTIL/EDITART.C` | 3: close open read |
+| `allocache` | `SRC/CACHE1D.C` | 3: copybufbyte mulscale32 reportandexit |
+| `uninitsb` | `SRC/KDMENG.C` | 2: digistat musistat |
+| `uninitgroupfile` | `SRC/CACHE1D.C` | 2: close kfree |
+| `swapwalls` | `UTIL/EDITART.C` | 2: outp resizetile |
+| `mvlineasm4_` | `SRC/A.ASM` | 2: mvcase0 mvcase15 |
+| `kread` | `SRC/CACHE1D.C` | 2: lseek read |
+| `getpalookup` | `UTIL/TRANSPAL.C` | 2: divscale16 getclosestcol |
+| `getpacket` | `SRC/MMULTI.C` | 2: inlastpacket lastpacket |
+| `getcrc` | `SRC/MMULTI.C` | 2: crctable updatecrc16 |
+| `wsayfollow` | `SRC/KDMENG.C` | 1: preparesndbuf |
+| `wsay` | `SRC/KDMENG.C` | 1: startwave |
+| `uncompress` | `SRC/CACHE1D.C` | 1: copybuf |
+| `suckcache` | `SRC/CACHE1D.C` | 1: copybuf |
+| `stereohicomb_` | `SRC/K.ASM` | 1: _qualookup |
+| `showart` | `UTIL/WAD2ART.C` | 1: fil1 |
+| `sendpacket` | `SRC/MMULTI.C` | 1: bakpacketbuf |
+| `sectorofwall` | `UTIL/CONVMAP6.C` | 1: numsectors |
+| `pcbound2char_` | `SRC/K.ASM` | 1: _pcsndlookup |
+| `neton` | `SRC/MULTI.C` | 1: myconnectnum |
+| `monohicomb_` | `SRC/K.ASM` | 1: _qualookup |
+| `main` | `UTIL/BACKMAP5.C` | 1: menunamecnt |
+| `loadsong` | `SRC/KDMENG.C` | 1: uninitsb |
+| `kopen4load` | `SRC/CACHE1D.C` | 1: open |
+| `klseek` | `SRC/CACHE1D.C` | 1: lseek |
+
+## Most Called Functions
+
+| Function | Called By (count) | Callers |
+|----------|-------------------|---------|
+| `close` | 10 | captureit gettile initgroupfile kclose loadgif loadpics main savepics uninitgroupfile updatemaps |
+| `open` | 9 | captureit gettile initgroupfile kopen4load loadgif loadpics main savepics updatemaps |
+| `read` | 8 | captureit gettile initgroupfile kread loadgif loadpics main updatemaps |
+| `getch` | 5 | gettile main selectbox updatemaps |
+| `write` | 4 | captureit main savepics updatemaps |
+| `setvmode` | 4 | VBE_getPalette gettile main |
+| `outp` | 4 | captureit loadgif selectbox swapwalls |
+| `lseek` | 4 | captureit klseek kread updatemaps |
+| `resizetile` | 3 | gettile savewall swapwalls |
+| `kbhit` | 3 | gettile main selectbox |
+| `copybufbyte` | 3 | allocache dfread dfwrite |
+| `savepics` | 2 | gettile main |
+| `readmouse` | 2 | main selectbox |
+| `printf` | 2 | initgroupfile updatemaps |
+| `printext256` | 2 | selectbox showall |
+| `limitrate` | 2 | gettile selectbox |
+| `getpalookup` | 2 | main selectbox |
+| `getclosestcol` | 2 | getpalookup gettrans |
+| `drawxorbox` | 2 | gettile selectbox |
+| `copybuf` | 2 | suckcache uncompress |
+| `clearbuf` | 2 | main savewall |
+| `allocache` | 2 | dfread dfwrite |
+| `_qualookup` | 2 | monohicomb_ stereohicomb_ |
+| `vesasetvisual` | 1 | VBE_getPalette |
+| `vesasetpalette` | 1 | VBE_getPalette |
+| `vesasetactive` | 1 | VBE_getPalette |
+| `vesachecked` | 1 | getvalidvesamodes |

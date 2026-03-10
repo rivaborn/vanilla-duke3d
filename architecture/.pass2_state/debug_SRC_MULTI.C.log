@@ -1,0 +1,11 @@
+[Mon Mar  2 20:22:17 EST 2026] START: SRC/MULTI.C
+[Mon Mar  2 20:22:17 EST 2026] fence=c src=/mnt/c/Coding/3DRealms/vanilla-duke3d/SRC/MULTI.C
+[Mon Mar  2 20:22:17 EST 2026] pass1 loaded: 13916 bytes
+[Mon Mar  2 20:22:17 EST 2026] src_lines=1124
+[Mon Mar  2 20:22:17 EST 2026] source truncated to 500 lines
+[Mon Mar  2 20:22:17 EST 2026] context sizes: arch=10623B xref=13086B
+[Mon Mar  2 20:22:17 EST 2026] payload built: 52373 chars
+[Mon Mar  2 20:22:17 EST 2026] calling claude -p --model haiku ...
+[Mon Mar  2 20:22:17 EST 2026] attempt 1: sending to claude...
+[Mon Mar  2 20:23:02 EST 2026] claude returned: exit=0 resp_size=9884
+[Mon Mar  2 20:23:02 EST 2026] success
